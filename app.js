@@ -1,6 +1,9 @@
-// create and add item 
 let submit = document.querySelector('input[type="submit"]');
 let listGroup = document.getElementById('listGroup');
+// filter
+let filter = document.getElementById('filter');
+
+//create element and add item
 submit.addEventListener('click',(e)=>{
     e.preventDefault();
     let newItem = document.getElementById('item').value;
@@ -24,4 +27,22 @@ listGroup.addEventListener('click',(e)=>{
             listGroup.removeChild(li);
         }
     }
+})
+
+// filter 
+filter.addEventListener('keyup',(e)=>{
+    e.preventDefault();
+    // conver text to lowercase 
+    let text = e.target.value.toLowerCase();
+    // get lis 
+    let items = listGroup.getElementsByTagName('li');
+    // convert to an array 
+    Array.from(items).forEach((item)=>{
+    let itemName = item.firstChild.textContent;
+    if(itemName.toLowerCase().indexOf(text) != -1){
+        item.style.display = 'block';
+    }else{
+        item.style.display = 'none'
+    }
+    })
 })
