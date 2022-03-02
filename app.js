@@ -1,3 +1,4 @@
+// create and add item 
 let submit = document.querySelector('input[type="submit"]');
 let listGroup = document.getElementById('listGroup');
 submit.addEventListener('click',(e)=>{
@@ -11,4 +12,16 @@ submit.addEventListener('click',(e)=>{
     deleteBtn.className = 'btn btn-danger btn-sm mx-5 delete';
     deleteBtn.appendChild(document.createTextNode('X'));
     li.appendChild(deleteBtn);
+})
+
+// remove item 
+listGroup.addEventListener('click',(e)=>{
+    e.preventDefault();
+    // console.log(e.target.classList.contains('delete'));
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are you sure?')){
+            let li = e.target.parentElement;
+            listGroup.removeChild(li);
+        }
+    }
 })
